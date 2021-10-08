@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Crusade\LaravelInterface\ValueObject;
+
+use PhpParser\Node\Stmt\Namespace_;
+
+class NamespaceVo
+{
+    public function __construct(private Namespace_ $namespace)
+    {
+    }
+
+    public function getNamespaceName(): string
+    {
+        return $this->namespace->name->toString();
+    }
+}
