@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Crusade\LaravelInterface;
 
 use Crusade\LaravelInterface\ValueObject\File;
+use Crusade\LaravelInterface\ValueObject\Path;
 use Symfony\Component\Finder\Finder;
 
 class FileFinder
@@ -19,9 +20,9 @@ class FileFinder
     /**
      * @return ArrayList<int, File>
      */
-    public function find(string $path): ArrayList
+    public function find(Path $path): ArrayList
     {
-        $this->finder->files()->in($path)->name('*.php');
+        $this->finder->files()->in($path->toString())->name('*.php');
 
         if ($this->finder->hasResults() === false) {
             return new ArrayList();

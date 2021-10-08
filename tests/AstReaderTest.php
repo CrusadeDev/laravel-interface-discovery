@@ -42,6 +42,20 @@ class AstReaderTest extends TestCase
         self::assertEquals('FileWithInterface', $result->getInterfaceName());
     }
 
+    public function test_findClass_ShouldReturnClass(): void
+    {
+        $result = $this->reader->findClass($this->astData->getAstWithClass());
+
+        self::assertEquals('FileWithClass', $result->getClassName());
+    }
+
+    public function test_findClass_ShouldThrowException(): void
+    {
+        $this->expectException(LogicException::class);
+
+        $this->reader->findClass($this->astData->getAstWithInterface());
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

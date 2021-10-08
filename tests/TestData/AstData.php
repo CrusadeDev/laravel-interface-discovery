@@ -81,4 +81,20 @@ class AstData
     {
         return $this->parser->parse($this->getFileWithAnnotation());
     }
+
+    public function getFileWithClass(): File
+    {
+        return new File(
+            new SplFileInfo(
+                '/var/www/html/tests/TestData/FileWithClass.php',
+                '',
+                'FileWithClass.php'
+            )
+        );
+    }
+
+    public function getAstWithClass(): AstRepresentation
+    {
+        return $this->parser->parse($this->getFileWithClass());
+    }
 }
