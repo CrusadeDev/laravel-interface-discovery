@@ -11,8 +11,9 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Namespace_;
 use PHPUnit\Framework\TestCase;
+use Crusade\LaravelInterface\Tests\TestData\FileWithClass;
 
-class ClassFQCNBuilderTest extends TestCase
+final class ClassFQCNBuilderTest extends TestCase
 {
     private ClassFQCNBuilder $builder;
 
@@ -20,17 +21,17 @@ class ClassFQCNBuilderTest extends TestCase
     {
         $result = $this->builder->buildFQCN($this->getNamespace(), $this->getClass());
 
-        self::assertEquals('Test/Test/ClassName', $result->getClass());
+        self::assertEquals(FileWithClass::class, $result->getClass());
     }
 
     private function getNamespace(): NamespaceVo
     {
-        return new NamespaceVo(new Namespace_(new Name('Test/Test')));
+        return new NamespaceVo(new Namespace_(new Name('Crusade\LaravelInterface\Tests\TestData')));
     }
 
     private function getClass(): ClassVo
     {
-        return new ClassVo(new Class_('ClassName'));
+        return new ClassVo(new Class_('FileWithClass'));
     }
 
     protected function setUp(): void

@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 /**
  * @template T
  */
-class ArrayList extends Collection
+final class ArrayList extends Collection
 {
 
 }

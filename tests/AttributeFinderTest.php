@@ -11,7 +11,7 @@ use Crusade\LaravelInterface\ValueObject\FullQualifiedClassNameVo;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertEquals;
 
-class AttributeFinderTest extends TestCase
+final class AttributeFinderTest extends TestCase
 {
     private AttributeFinder $finder;
 
