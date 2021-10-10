@@ -8,12 +8,12 @@ use Crusade\LaravelInterface\ValueObject\ClassVo;
 use Crusade\LaravelInterface\ValueObject\FullQualifiedClassNameVo;
 use Crusade\LaravelInterface\ValueObject\NamespaceVo;
 
-class ClassFQCNBuilder
+final class ClassFQCNBuilder
 {
     public function buildFQCN(NamespaceVo $namespaceVo, ClassVo $classVo): FullQualifiedClassNameVo
     {
         return new FullQualifiedClassNameVo (
-            sprintf('%s/%s', $namespaceVo->getNamespaceName(), $classVo->getClassName())
+            sprintf('%s\%s', $namespaceVo->getNamespaceName(), $classVo->getClassName())
         );
     }
 }

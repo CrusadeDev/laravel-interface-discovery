@@ -6,7 +6,7 @@ namespace Crusade\LaravelInterface\ValueObject;
 
 use PhpParser\Node\Stmt\Namespace_;
 
-class NamespaceVo
+final class NamespaceVo
 {
     public function __construct(private Namespace_ $namespace)
     {

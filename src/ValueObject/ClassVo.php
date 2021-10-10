@@ -6,7 +6,7 @@ namespace Crusade\LaravelInterface\ValueObject;
 
 use PhpParser\Node\Stmt\Class_;
 
-class ClassVo
+final class ClassVo
 {
     public function __construct(private Class_ $class)
     {
