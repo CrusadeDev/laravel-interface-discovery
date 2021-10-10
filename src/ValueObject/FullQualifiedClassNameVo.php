@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Crusade\LaravelInterface\ValueObject;
 
-class FullQualifiedClassNameVo
+final class FullQualifiedClassNameVo
 {
     /**
      * @param class-string $class
@@ -15,19 +15,19 @@ class FullQualifiedClassNameVo
     }
 
     /**
-     * @param class-string $class
+     * @param class-string $classOrInterface
      */
-    private function validate(string $class): void
+    private function validate(string $classOrInterface): void
     {
-        if (class_exists($class) === false) {
-            throw new \LogicException("$class do not exist");
+        if (class_exists($classOrInterface) === false && interface_exists($classOrInterface) === false) {
+            throw new \LogicException("$classOrInterface do not exist");
         }
     }
 
     /**
      * @return class-string
      */
-    public function getClass(): string
+    public function toString(): string
     {
         return $this->class;
     }

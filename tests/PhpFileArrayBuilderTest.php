@@ -11,7 +11,7 @@ use Crusade\LaravelInterface\Tests\TestData\FileWithClass;
 use Crusade\LaravelInterface\ValueObject\FullQualifiedClassNameVo;
 use PHPUnit\Framework\TestCase;
 
-class PhpFileArrayBuilderTest extends TestCase
+final class PhpFileArrayBuilderTest extends TestCase
 {
     private PhpFileArrayBuilder $builder;
 
@@ -28,7 +28,10 @@ class PhpFileArrayBuilderTest extends TestCase
             ArrayList::wrap([FileWithAnnotation::class => new FullQualifiedClassNameVo(FileWithClass::class)])
         );
 
-        self::assertEquals("<?php return ['test' => 'test',];", $result->toString());
+        self::assertEquals(
+            "<?php return ['Crusade\LaravelInterface\Tests\TestData\FileWithAnnotation' => 'Crusade\LaravelInterface\Tests\TestData\FileWithClass',];",
+            $result->toString()
+        );
     }
 
     protected function setUp(): void

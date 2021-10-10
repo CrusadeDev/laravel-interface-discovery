@@ -9,7 +9,7 @@ use Crusade\LaravelInterface\ValueObject\AstRepresentation;
 use Crusade\LaravelInterface\ValueObject\File;
 use Symfony\Component\Finder\SplFileInfo;
 
-class AstData
+final class AstData
 {
     private FileParser $parser;
 
@@ -70,7 +70,7 @@ class AstData
     {
         return new File(
             new SplFileInfo(
-                '/var/www/html/tests/TestData/FileWithAnnotation',
+                '/var/www/html/tests/TestData/FileWithAnnotation.php',
                 '',
                 'FileWithoutInterface.php'
             )

@@ -13,7 +13,7 @@ use Crusade\LaravelInterface\ValueObject\InterfaceVo;
 use Crusade\LaravelInterface\ValueObject\NamespaceVo;
 use PhpParser\NodeTraverser;
 
-class AstReader
+final class AstReader
 {
     private NodeTraverser $traverser;
 
@@ -22,7 +22,7 @@ class AstReader
         $this->traverser = new NodeTraverser();
     }
 
-    public function findNamespace(AstRepresentation $astRepresentation): NamespaceVo
+    public function findNamespace(AstRepresentation $astRepresentation): ?NamespaceVo
     {
         $namespaceTraverser = new NamespaceTraverser();
 
@@ -30,13 +30,13 @@ class AstReader
         $this->traverser->traverse($astRepresentation->getStmt());
 
         if ($namespaceTraverser->hasNamespace() === false) {
-            throw new \LogicException('Namespace not found');
+            return null;
         }
 
         return new NamespaceVo($namespaceTraverser->getNamespace());
     }
 
-    public function findClass(AstRepresentation $astRepresentation): ClassVo
+    public function findClass(AstRepresentation $astRepresentation): ?ClassVo
     {
         $classTraverser = new ClassTraverser();
 
@@ -44,13 +44,13 @@ class AstReader
         $this->traverser->traverse($astRepresentation->getStmt());
 
         if ($classTraverser->hasClass() === false) {
-            throw new \LogicException('Namespace not found');
+            return null;
         }
 
         return new ClassVo($classTraverser->getClass());
     }
 
-    public function findInterface(AstRepresentation $astRepresentation): InterfaceVo
+    public function findInterface(AstRepresentation $astRepresentation): ?InterfaceVo
     {
         $interfaceTraverser = new InterfaceTraverser();
 
@@ -58,7 +58,7 @@ class AstReader
         $this->traverser->traverse($astRepresentation->getStmt());
 
         if ($interfaceTraverser->hasInterface() === false) {
-            throw new \LogicException('Namespace not found');
+            return null;
         }
 
         return new InterfaceVo($interfaceTraverser->getInterface());

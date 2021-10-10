@@ -7,7 +7,7 @@ namespace Crusade\LaravelInterface;
 use Crusade\LaravelInterface\Annotation\ConnectAnnotation;
 use Crusade\LaravelInterface\ValueObject\FullQualifiedClassNameVo;
 
-class AttributeFinder
+final class AttributeFinder
 {
     /**
      * @noinspection PhpIncompatibleReturnTypeInspection
@@ -16,7 +16,7 @@ class AttributeFinder
         FullQualifiedClassNameVo $class,
     ): ?ConnectAnnotation {
         try {
-            $ref = new \ReflectionClass((string) $class);
+            $ref = new \ReflectionClass($class->toString());
         } catch (\ReflectionException $e) {
             throw new \LogicException($e->getMessage());
         }

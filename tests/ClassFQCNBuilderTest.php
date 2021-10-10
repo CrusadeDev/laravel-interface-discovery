@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Crusade\LaravelInterface\Tests;
 
 use Crusade\LaravelInterface\ClassFQCNBuilder;
+use Crusade\LaravelInterface\Tests\TestData\FileWithClass;
 use Crusade\LaravelInterface\ValueObject\ClassVo;
 use Crusade\LaravelInterface\ValueObject\NamespaceVo;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Namespace_;
 use PHPUnit\Framework\TestCase;
-use Crusade\LaravelInterface\Tests\TestData\FileWithClass;
 
 final class ClassFQCNBuilderTest extends TestCase
 {
@@ -21,7 +21,7 @@ final class ClassFQCNBuilderTest extends TestCase
     {
         $result = $this->builder->buildFQCN($this->getNamespace(), $this->getClass());
 
-        self::assertEquals(FileWithClass::class, $result->getClass());
+        self::assertEquals(FileWithClass::class, $result->toString());
     }
 
     private function getNamespace(): NamespaceVo

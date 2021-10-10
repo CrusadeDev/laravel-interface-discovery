@@ -6,13 +6,13 @@ namespace Crusade\LaravelInterface\ValueObject;
 
 use PhpParser\Node\Stmt\Class_;
 
-final class ClassVo
+final class ClassVo implements ClassOrInterfaceInterface
 {
     public function __construct(private Class_ $class)
     {
     }
 
-    public function getClassName(): string
+    public function toString(): string
     {
         return $this->class->name->toString();
     }

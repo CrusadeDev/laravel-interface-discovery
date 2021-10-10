@@ -6,10 +6,9 @@ namespace Crusade\LaravelInterface\Tests;
 
 use Crusade\LaravelInterface\AstReader;
 use Crusade\LaravelInterface\Tests\TestData\AstData;
-use LogicException;
 use PHPUnit\Framework\TestCase;
 
-class AstReaderTest extends TestCase
+final class AstReaderTest extends TestCase
 {
     private AstReader $reader;
     private AstData $astData;
@@ -21,39 +20,39 @@ class AstReaderTest extends TestCase
         self::assertEquals('Crusade\LaravelInterface\Tests\TestData', $result->getNamespaceName());
     }
 
-    public function test_findNamespace_ShouldThrowException_WhenNotPresented(): void
+    public function test_findNamespace_ShouldReturnNull_WhenNotPresented(): void
     {
-        $this->expectException(LogicException::class);
+        $result = $this->reader->findInterface($this->astData->getAstWithoutNamespace());
 
-        $this->reader->findInterface($this->astData->getAstWithoutNamespace());
+        self::assertNull($result);
     }
 
-    public function test_findInterface_ShouldThrowException(): void
+    public function test_findInterface_ShouldReturnNull(): void
     {
-        $this->expectException(LogicException::class);
+        $result = $this->reader->findInterface($this->astData->getAstWithoutInterface());
 
-        $this->reader->findInterface($this->astData->getAstWithoutInterface());
+        self::assertNull($result);
     }
 
     public function test_findInterface_ShouldReturnInterface(): void
     {
         $result = $this->reader->findInterface($this->astData->getAstWithInterface());
 
-        self::assertEquals('FileWithInterface', $result->getInterfaceName());
+        self::assertEquals('FileWithInterface', $result->toString());
     }
 
     public function test_findClass_ShouldReturnClass(): void
     {
         $result = $this->reader->findClass($this->astData->getAstWithClass());
 
-        self::assertEquals('FileWithClass', $result->getClassName());
+        self::assertEquals('FileWithClass', $result->toString());
     }
 
-    public function test_findClass_ShouldThrowException(): void
+    public function test_findClass_ShouldReturnNull_WhenIsNotPresent(): void
     {
-        $this->expectException(LogicException::class);
+        $result = $this->reader->findClass($this->astData->getAstWithInterface());
 
-        $this->reader->findClass($this->astData->getAstWithInterface());
+        self::assertNull($result);
     }
 
     protected function setUp(): void
