@@ -12,7 +12,7 @@ use Illuminate\Console\Command;
 
 final class IndexAllCommand extends Command
 {
-    protected $signature = 'discover:interfaces:all {--source} {--resultPath}';
+    protected $signature = 'discover:interfaces:all {source} {resultPath}';
     protected $description = 'Index all interface and generate config';
     private AnnotationService $annotationService;
     private FileService $fileService;
@@ -26,8 +26,8 @@ final class IndexAllCommand extends Command
 
     public function handle(): void
     {
-        $path = $this->argument('source');
-        $resultPath = $this->argument('resultPath');
+        $path = $this->option('source');
+        $resultPath = $this->option('resultPath');
 
         $files = $this->fileService->findFileInPath(new Path($path));
         $files
