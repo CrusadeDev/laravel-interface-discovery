@@ -21,6 +21,14 @@ final class MainServiceTest extends TestCase
         self::assertFileExists($this->resultPath->toString());
     }
 
+    public function test_discover_shouldCreateConfigEventWithoutResults(): void
+    {
+        $this->resultPath = new Path(__DIR__.'/TestData/test.php');
+        $this->service->discover(new Path(__DIR__.'/TestData/test'), $this->resultPath);
+
+        self::assertFileExists($this->resultPath->toString());
+    }
+
     protected function tearDown(): void
     {
         parent::tearDown();

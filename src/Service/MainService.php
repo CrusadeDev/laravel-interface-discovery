@@ -29,6 +29,10 @@ final class MainService
             });
 
 
+        if ($files === null) {
+            $files = ArrayList::empty();
+        }
+
         $this->fileService->saveToFile($cachePath, $files);
     }
 }
