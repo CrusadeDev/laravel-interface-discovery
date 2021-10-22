@@ -15,7 +15,6 @@ final class PhpFileArrayBuilder
      */
     public function build(ArrayList $content): Content
     {
-
         $string = "<?php ";
         $string .= "return [";
 
