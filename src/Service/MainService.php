@@ -10,13 +10,8 @@ use Crusade\LaravelInterface\ValueObject\Path;
 
 final class MainService
 {
-    private AnnotationService $annotationService;
-    private FileService $fileService;
-
-    public function __construct()
+    public function __construct(private AnnotationService $annotationService, private FileService $fileService)
     {
-        $this->annotationService = new AnnotationService();
-        $this->fileService = new FileService();
     }
 
     public function discover(Path $src, Path $cachePath): void

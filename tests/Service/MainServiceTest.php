@@ -2,6 +2,8 @@
 
 namespace Crusade\LaravelInterface\Tests\Service;
 
+use Crusade\LaravelInterface\Service\AnnotationService;
+use Crusade\LaravelInterface\Service\FileService;
 use Crusade\LaravelInterface\Service\MainService;
 use Crusade\LaravelInterface\ValueObject\Path;
 use PHPUnit\Framework\TestCase;
@@ -28,6 +30,6 @@ final class MainServiceTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->service = new MainService();
+        $this->service = new MainService(new AnnotationService(), new FileService());
     }
 }
