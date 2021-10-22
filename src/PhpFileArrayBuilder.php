@@ -7,10 +7,10 @@ namespace Crusade\LaravelInterface;
 use Crusade\LaravelInterface\ValueObject\Content;
 use Crusade\LaravelInterface\ValueObject\FullQualifiedClassNameVo;
 
-class PhpFileArrayBuilder
+final class PhpFileArrayBuilder
 {
     /**
-     * @param ArrayList<FullQualifiedClassNameVo,FullQualifiedClassNameVo> $content
+     * @param ArrayList<string,FullQualifiedClassNameVo> $content
      * @return Content
      */
     public function build(ArrayList $content): Content

@@ -8,7 +8,7 @@ use Crusade\LaravelInterface\ValueObject\Content;
 use Crusade\LaravelInterface\ValueObject\Path;
 use Symfony\Component\Filesystem\Filesystem;
 
-class FileSaver
+final class FileSaver
 {
     private Filesystem $fileSystem;
 

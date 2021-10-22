@@ -8,7 +8,7 @@ use Crusade\LaravelInterface\ValueObject\File;
 use Crusade\LaravelInterface\ValueObject\Path;
 use Symfony\Component\Finder\Finder;
 
-class FileFinder
+final class FileFinder
 {
     private Finder $finder;
 

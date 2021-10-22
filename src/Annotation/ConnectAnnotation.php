@@ -10,7 +10,7 @@ use Attribute;
 use Crusade\LaravelInterface\ValueObject\FullQualifiedClassNameVo;
 
 #[Attribute]
-class ConnectAnnotation implements AnnotationInterface
+final class ConnectAnnotation implements AnnotationInterface
 {
     public function __construct(private string $implementation)
     {

@@ -9,7 +9,7 @@ use Crusade\LaravelInterface\ValueObject\File;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
 
-class FileParser
+final class FileParser
 {
     private Parser $parser;
 

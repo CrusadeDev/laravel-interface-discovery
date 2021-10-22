@@ -1,0 +1,1 @@
+<?php return ['test' => 'Crusade\LaravelInterface\Tests\Service\FileServiceTest',];

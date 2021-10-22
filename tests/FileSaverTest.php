@@ -9,7 +9,7 @@ use Crusade\LaravelInterface\ValueObject\Content;
 use Crusade\LaravelInterface\ValueObject\Path;
 use PHPUnit\Framework\TestCase;
 
-class FileSaverTest extends TestCase
+final class FileSaverTest extends TestCase
 {
     private FileSaver $fileSaver;
     private Path $createdFile;

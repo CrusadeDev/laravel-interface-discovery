@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Crusade\LaravelInterface\ValueObject;
 
-class Content
+final class Content
 {
     public function __construct(private string $content)
     {

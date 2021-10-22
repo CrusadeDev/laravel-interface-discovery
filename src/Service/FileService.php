@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Crusade\LaravelInterface\Service;
 
+use Crusade\LaravelInterface\ArrayList;
 use Crusade\LaravelInterface\FileSaver;
 use Crusade\LaravelInterface\PhpFileArrayBuilder;
 use Crusade\LaravelInterface\ValueObject\Path;
 
-class FileService
+final class FileService
 {
     private FileSaver $fileSaver;
     private PhpFileArrayBuilder $contentBuilder;
@@ -19,7 +20,11 @@ class FileService
         $this->contentBuilder = new PhpFileArrayBuilder();
     }
 
-    public function saveToFile(Path $path, array $content): void
+    /**
+     * @param Path $path
+     * @param ArrayList<string, string> $content
+     */
+    public function saveToFile(Path $path, ArrayList $content): void
     {
         $contentAsString = $this->contentBuilder->build($content);
 

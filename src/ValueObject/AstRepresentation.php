@@ -6,7 +6,7 @@ namespace Crusade\LaravelInterface\ValueObject;
 
 use PhpParser\Node\Stmt;
 
-class AstRepresentation
+final class AstRepresentation
 {
     /**
      * @param array<int, Stmt> $stmt
