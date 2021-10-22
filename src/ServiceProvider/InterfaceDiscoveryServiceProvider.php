@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Crusade\LaravelInterface\ServiceProvider;
 
 use Crusade\LaravelInterface\ArrayList;
+use Crusade\LaravelInterface\Console\IndexAllCommand;
 use Crusade\LaravelInterface\Port\ConfigLaravelPath;
 use Crusade\LaravelInterface\Port\ConfigPathInterface;
 use Illuminate\Cache\Repository;
@@ -27,5 +28,7 @@ final class InterfaceDiscoveryServiceProvider extends ServiceProvider
         $list->each(function (array $interface, string $key) {
             $this->app->bind($key, $interface);
         });
+
+        $this->commands([IndexAllCommand::class]);
     }
 }
