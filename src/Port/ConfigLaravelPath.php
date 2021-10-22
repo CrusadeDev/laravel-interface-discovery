@@ -10,6 +10,6 @@ final class ConfigLaravelPath implements ConfigPathInterface
 {
     public function getConfigPath(): Path
     {
-        return new Path(config()->configPath());
+        return new Path(config_path());
     }
 }
