@@ -26,8 +26,8 @@ final class IndexAllCommand extends Command
 
     public function handle(): void
     {
-        $path = $this->option('source');
-        $resultPath = $this->option('resultPath');
+        $path = $this->argument('source');
+        $resultPath = $this->argument('resultPath');
 
         $files = $this->fileService->findFileInPath(new Path($path));
         $files
