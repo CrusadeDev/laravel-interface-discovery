@@ -23,9 +23,9 @@ final class InterfaceDiscoveryServiceProvider extends ServiceProvider
 
         /** @var Repository $config * */
         $config = $this->app->make('config');
-        $list = ArrayList::wrap($config->get('interface_discovery'));
+        $list = ArrayList::wrap($config->get('generated_config'));
 
-        $list->each(function (array $interface, string $key) {
+        $list->each(function (string $interface, string $key): void {
             $this->app->bind($key, $interface);
         });
 
