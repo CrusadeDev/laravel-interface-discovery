@@ -7,7 +7,7 @@ namespace Crusade\LaravelInterface\NodeTraverser;
 use PhpParser\Node;
 use PhpParser\NodeVisitorAbstract;
 
-class NamespaceTraverser extends NodeVisitorAbstract
+final class NamespaceTraverser extends NodeVisitorAbstract
 {
     private ?Node\Stmt\Namespace_ $namespace = null;
 

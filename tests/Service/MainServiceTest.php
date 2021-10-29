@@ -24,7 +24,7 @@ final class MainServiceTest extends TestCase
     public function test_discover_shouldCreateConfigEventWithoutResults(): void
     {
         $this->resultPath = new Path(__DIR__.'/TestData/test.php');
-        $this->service->discover(new Path(__DIR__.'/TestData/test'), $this->resultPath);
+        $this->service->discover(new Path(__DIR__.'/TestData/testFolder'), $this->resultPath);
 
         self::assertFileExists($this->resultPath->toString());
     }
