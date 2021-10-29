@@ -14,7 +14,7 @@ final class FileFinderTest extends TestCase
 
     public function test_find_shouldReturnFilesInPath(): void
     {
-        $files = $this->finder->find(new Path('/var/www/html/tests/TestData/FinderTestFolder'));
+        $files = $this->finder->find(new Path(__DIR__. '/TestData/FinderTestFolder'));
 
         self::assertCount(1, $files->toArray());
     }

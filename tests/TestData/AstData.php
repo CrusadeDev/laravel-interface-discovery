@@ -27,7 +27,7 @@ final class AstData
     {
         return new File(
             new SplFileInfo(
-                '/var/www/html/tests/TestData/FileWithInterface.php',
+                __DIR__ . '/FileWithInterface.php',
                 '',
                 'FileWithInterface.php'
             )
@@ -43,7 +43,7 @@ final class AstData
     {
         return new File(
             new SplFileInfo(
-                '/var/www/html/tests/TestData/FileWithoutNamespace.php',
+                __DIR__ . '/FileWithoutNamespace.php',
                 '',
                 'FileWithoutNamespace.php'
             )
@@ -59,7 +59,7 @@ final class AstData
     {
         return new File(
             new SplFileInfo(
-                '/var/www/html/tests/TestData/FileWithoutInterface.php',
+                __DIR__ . '/FileWithoutInterface.php',
                 '',
                 'FileWithoutInterface.php'
             )
@@ -70,7 +70,7 @@ final class AstData
     {
         return new File(
             new SplFileInfo(
-                '/var/www/html/tests/TestData/FileWithAnnotation.php',
+                __DIR__ . '/FileWithAnnotation.php',
                 '',
                 'FileWithoutInterface.php'
             )
@@ -86,7 +86,7 @@ final class AstData
     {
         return new File(
             new SplFileInfo(
-                '/var/www/html/tests/TestData/FileWithClass.php',
+                __DIR__ . '/FileWithClass.php',
                 '',
                 'FileWithClass.php'
             )
