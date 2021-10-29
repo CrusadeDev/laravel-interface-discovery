@@ -23,6 +23,9 @@ final class IndexAllCommand extends Command
     {
         $path = $this->argument('source');
 
-        $this->service->discover(new Path($path), $this->configPath->getConfigPath());
+        $this->service->discover(
+            new Path($path),
+            new Path($this->configPath->getConfigPath()->toString().'/generated_config.php')
+        );
     }
 }

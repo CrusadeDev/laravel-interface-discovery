@@ -25,7 +25,7 @@ class FileParserTest extends TestCase
         $this->parser = new FileParser();
         $this->file = new File(
             new SplFileInfo(
-                '/var/www/html/tests/TestData/FileWithInterface.php',
+                __DIR__.'/TestData/FileWithInterface.php',
                 '',
                 'FileWithInterface.php'
             )

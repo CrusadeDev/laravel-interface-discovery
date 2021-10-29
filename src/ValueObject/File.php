@@ -6,7 +6,7 @@ namespace Crusade\LaravelInterface\ValueObject;
 
 use Symfony\Component\Finder\SplFileInfo;
 
-class File
+final class File
 {
     public function __construct(private SplFileInfo $file)
     {
