@@ -5,32 +5,33 @@ declare(strict_types=1);
 namespace Crusade\LaravelInterface\Service;
 
 use Crusade\LaravelInterface\AstReader;
-use Crusade\LaravelInterface\AttributeFinder;
+use Crusade\LaravelInterface\ConnectAnnotationFinder;
 use Crusade\LaravelInterface\ClassFQCNBuilder;
+use Crusade\LaravelInterface\Exception\AttributeDoesNotContainsRequiredArgumentsException;
+use Crusade\LaravelInterface\Exception\ClassOrInterfaceDoesNotExistException;
+use Crusade\LaravelInterface\Exception\ImplementationMustBeAClassException;
+use Crusade\LaravelInterface\Exception\InterfaceImplementsMultipleConnectionAnnotationException;
 use Crusade\LaravelInterface\FileParser;
-use Crusade\LaravelInterface\ValueObject\File;
-use Crusade\LaravelInterface\ValueObject\FullQualifiedClassNameVo;
+use Crusade\LaravelInterface\ValueObject\FileContent;
+use Crusade\LaravelInterface\ValueObject\FoundAnnotation;
 
 final class AnnotationService
 {
-    private FileParser $fileParser;
-    private AstReader $astReader;
-    private AttributeFinder $attributeFinder;
-    private ClassFQCNBuilder $classFQCNBuilder;
-
-    public function __construct()
-    {
-        $this->fileParser = new FileParser();
-        $this->astReader = new AstReader();
-        $this->attributeFinder = new AttributeFinder();
-        $this->classFQCNBuilder = new ClassFQCNBuilder();
+    public function __construct(
+        private FileParser $fileParser,
+        private AstReader $astReader,
+        private ConnectAnnotationFinder $attributeFinder,
+        private ClassFQCNBuilder $classFQCNBuilder
+    ) {
     }
 
     /**
-     * @TODO change array to object
-     * @return array<string, FullQualifiedClassNameVo>|null
+     * @throws AttributeDoesNotContainsRequiredArgumentsException
+     * @throws ClassOrInterfaceDoesNotExistException
+     * @throws ImplementationMustBeAClassException
+     * @throws InterfaceImplementsMultipleConnectionAnnotationException
      */
-    public function handle(File $file): ?array
+    public function findConnectAnnotation(FileContent $file): ?FoundAnnotation
     {
         $ast = $this->fileParser->parse($file);
         $namespace = $this->astReader->findNamespace($ast);
@@ -53,6 +54,6 @@ final class AnnotationService
             return null;
         }
 
-        return [$fqcn->toString() => $attribute->getImplementation()];
+        return new FoundAnnotation($fqcn->toString(), $attribute->getImplementation()->toString());
     }
 }

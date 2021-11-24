@@ -23,9 +23,13 @@ final class IndexAllCommand extends Command
     {
         $path = $this->argument('source');
 
-        $this->service->discover(
-            new Path($path),
-            new Path($this->configPath->getConfigPath()->toString().'/generated_config.php')
-        );
+        try {
+            $this->service->discover(
+                new Path($path),
+                new Path($this->configPath->getConfigPath()->toString().'/generated_config.php')
+            );
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+        }
     }
 }

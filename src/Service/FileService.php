@@ -8,20 +8,16 @@ use Crusade\LaravelInterface\ArrayList;
 use Crusade\LaravelInterface\FileFinder;
 use Crusade\LaravelInterface\FileSaver;
 use Crusade\LaravelInterface\PhpFileArrayBuilder;
-use Crusade\LaravelInterface\ValueObject\File;
+use Crusade\LaravelInterface\ValueObject\FileContent;
 use Crusade\LaravelInterface\ValueObject\Path;
 
 final class FileService
 {
-    private FileSaver $fileSaver;
-    private FileFinder $fileFinder;
-    private PhpFileArrayBuilder $contentBuilder;
-
-    public function __construct()
-    {
-        $this->fileSaver = new FileSaver();
-        $this->fileFinder = new FileFinder();
-        $this->contentBuilder = new PhpFileArrayBuilder();
+    public function __construct(
+        private FileSaver $fileSaver,
+        private FileFinder $fileFinder,
+        private PhpFileArrayBuilder $contentBuilder
+    ) {
     }
 
     /**
@@ -36,7 +32,7 @@ final class FileService
     }
 
     /**
-     * @return ArrayList<int, File>
+     * @return ArrayList<int, FileContent>
      */
     public function findFileInPath(Path $path): ArrayList
     {

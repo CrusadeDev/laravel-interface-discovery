@@ -10,6 +10,9 @@ use Crusade\LaravelInterface\ValueObject\NamespaceVo;
 
 final class ClassFQCNBuilder
 {
+    /**
+     * @throws Exception\ClassOrInterfaceDoesNotExistException
+     */
     public function buildFQCN(NamespaceVo $namespaceVo, ClassOrInterfaceInterface $classVo): FullQualifiedClassNameVo
     {
         return new FullQualifiedClassNameVo (

@@ -15,11 +15,8 @@ use PhpParser\NodeTraverser;
 
 final class AstReader
 {
-    private NodeTraverser $traverser;
-
-    public function __construct()
+    public function __construct(private NodeTraverser $traverser)
     {
-        $this->traverser = new NodeTraverser();
     }
 
     public function findNamespace(AstRepresentation $astRepresentation): ?NamespaceVo
