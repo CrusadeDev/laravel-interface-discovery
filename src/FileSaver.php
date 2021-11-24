@@ -10,11 +10,8 @@ use Symfony\Component\Filesystem\Filesystem;
 
 final class FileSaver
 {
-    private Filesystem $fileSystem;
-
-    public function __construct()
+    public function __construct(private Filesystem $fileSystem)
     {
-        $this->fileSystem = new Filesystem();
     }
 
     public function saveToFile(Path $path, Content $content): void

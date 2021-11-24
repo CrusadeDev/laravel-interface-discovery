@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace Crusade\LaravelInterface;
 
-use Crusade\LaravelInterface\ValueObject\File;
+use Crusade\LaravelInterface\ValueObject\FileContent;
 use Crusade\LaravelInterface\ValueObject\Path;
 use Symfony\Component\Finder\Finder;
 
 final class FileFinder
 {
-    private Finder $finder;
-
-    public function __construct()
+    public function __construct(private Finder $finder)
     {
-        $this->finder = new Finder();
     }
 
     /**
-     * @return ArrayList<int, File>
+     * @return ArrayList<int, FileContent>
      */
     public function find(Path $path): ArrayList
     {
@@ -31,7 +28,7 @@ final class FileFinder
         $result = [];
 
         foreach ($this->finder as $file) {
-            $result[] = new File($file);
+            $result[] = new FileContent($file);
         }
 
         return new ArrayList($result);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Crusade\LaravelInterface;
 
 use Crusade\LaravelInterface\ValueObject\AstRepresentation;
-use Crusade\LaravelInterface\ValueObject\File;
+use Crusade\LaravelInterface\ValueObject\FileContent;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
 
@@ -18,7 +18,7 @@ final class FileParser
         $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
     }
 
-    public function parse(File $file): AstRepresentation
+    public function parse(FileContent $file): AstRepresentation
     {
         $ast = $this->parser->parse($file->getContent());
 
