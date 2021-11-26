@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Crusade\LaravelInterface\ServiceProvider;
 
-use Crusade\LaravelInterface\ArrayList;
 use Crusade\LaravelInterface\Console\IndexAllCommand;
-use Crusade\LaravelInterface\Port\ConfigLaravelPath;
-use Crusade\LaravelInterface\Port\ConfigPathInterface;
+use Crusade\LaravelInterface\Infrastructure\ArrayList;
+use Crusade\LaravelInterface\Shared\Port\ConfigLaravelPath;
+use Crusade\LaravelInterface\Shared\Port\ConfigPathInterface;
+use Crusade\LaravelInterface\Shared\Repository\FileRepository;
+use Crusade\LaravelInterface\Shared\Repository\FileRepositoryInterface;
 use Illuminate\Cache\Repository;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\ServiceProvider;
@@ -30,5 +32,12 @@ final class InterfaceDiscoveryServiceProvider extends ServiceProvider
         });
 
         $this->commands([IndexAllCommand::class]);
+
+        $this->registerInterfaces();
+    }
+
+    private function registerInterfaces(): void
+    {
+        $this->app->bind(FileRepositoryInterface::class, FileRepository::class);
     }
 }

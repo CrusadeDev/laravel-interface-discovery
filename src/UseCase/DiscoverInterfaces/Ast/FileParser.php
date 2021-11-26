@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Crusade\LaravelInterface\UseCase\DiscoverInterfaces\Ast;
+
+use Crusade\LaravelInterface\Shared\ValueObject\AstRepresentation;
+use Crusade\LaravelInterface\Shared\ValueObject\FileContent;
+use PhpParser\Parser;
+use PhpParser\ParserFactory;
+
+final class FileParser
+{
+    private Parser $parser;
+
+    public function __construct()
+    {
+        $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+    }
+
+    public function parse(FileContent $file): AstRepresentation
+    {
+        $ast = $this->parser->parse($file->getContent());
+
+        if ($ast === null) {
+            return new AstRepresentation([]);
+        }
+
+        return new AstRepresentation($ast);
+    }
+}
